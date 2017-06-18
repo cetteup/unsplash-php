@@ -94,7 +94,7 @@ class HttpClient
     }
 
     /**
-     * Get a list of collections created by the user
+     * Get a list of collections created by a user
      * https://unsplash.com/documentation#list-a-users-collections
      *
      * @param  string $username The user’s username
@@ -108,6 +108,23 @@ class HttpClient
         $collections = $this->send_request('GET','users/'.$username.'/collections',['page' => $page, 'per_page' => $per_page]);
 
         return $collections;
+    }
+
+    /**
+     * Retrieve the consolidated number of downloads, views and likes of all user’s photos, as well as the historical breakdown and average of these stats in a specific timeframe
+     * https://unsplash.com/documentation#get-a-users-statistics
+     *
+     * @param  string $username The user’s username
+     * @param  string $resolution The frequency of the stats
+     * @param  int    $quantity The amount of for each stat
+     * @return array Array of statistics
+     */
+    public function user_statistics($username, $resolution = 'days', $quantity = 30)
+    {
+        if (!is_string($username) || !is_string($resolution) || !is_int($quantity)) return null;
+        $statistics = $this->send_request('GET','users/'.$username.'/statistics',['resolution' => $resolution, 'quantity' => $quantity]);
+
+        return $statistics;
     }
 
     // +++ Photo endpoints +++
@@ -180,15 +197,17 @@ class HttpClient
      * Retrieve a single photo’s stats
      * https://unsplash.com/documentation#get-a-photos-stats
      *
-     * @param  int $id The photo’s ID
+     * @param  int    $id The photo’s ID
+     * @param  string $resolution The frequency of the stats
+     * @param  int    $quantity The amount of for each stat
      * @return array Array with stats
      */
-    public function photo_stats($id)
+    public function photo_statistics($id, $resolution = 'days', $quantity = 30)
     {
-        if (!is_string($id)) return null;
-        $stats = $this->send_request('GET','photos/'.$id.'/stats');
+        if (!is_string($id) || !is_string($resolution) || !is_int($quantity)) return null;
+        $statistics = $this->send_request('GET','photos/'.$id.'/statistics',['resolution' => $resolution, 'quantity' => $quantity]);
 
-        return $stats;
+        return $statistics;
     }
 
     /**
@@ -216,12 +235,13 @@ class HttpClient
      * @param  string $query Search terms
      * @param  int    $page Page number to retrieve
      * @param  int    $per_page Number of items per page
+     * @param  string $colletions Collection ID(‘s) to narrow search. If multiple, comma-separated.
      * @return array Array of collections
      */
-    public function search_photos($query, $page = 1, $per_page = 10)
+    public function search_photos($query, $page = 1, $per_page = 10, $collections)
     {
         if (!is_string($query) || !is_int($page) || !is_int($per_page)) return null;
-        $photos = $this->send_request('GET','search/photos',['query' => $query, 'page' => $page, 'per_page' => $per_page]);
+        $photos = $this->send_request('GET','search/photos',['query' => $query, 'page' => $page, 'per_page' => $per_page, 'collections' => $collections]);
 
         return $photos;
     }

@@ -112,7 +112,7 @@ $photos = $unsplash->user_likes($username, $page, $per_page, $order_by);
 ===
 
 #### Diza\Unsplash\HttpClient->user_collections($username, $page, $per_page)
-Get a list of collections created by the user.
+Get a list of collections created by a user.
 
 *Note:* You need to instantiate an httpclient object first
 
@@ -129,6 +129,28 @@ Get a list of collections created by the user.
 ```php
 $unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
 $collections = $unsplash->user_collections($username, $page, $per_page);
+```
+
+===
+
+#### Diza\Unsplash\HttpClient->user_statistics($username, $resolution, $quantity)
+Retrieve the consolidated number of downloads, views and likes of all user’s photos, as well as the historical breakdown and average of these stats in a specific timeframe.
+
+*Note:* You need to instantiate an httpclient object first
+
+**Arguments**
+
+  Argument     | Type | Opt/Required
+---------------|------|--------------
+`$username`    | string  | Required
+`$resolution`  | string  | Opt *(Default: days)* | Accepted values: `days`
+`$quantity`    | int  | Opt *(Default: 30 / Minimum: 1 / Maximum: 30)*
+
+**Example**
+
+```php
+$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$collections = $unsplash->user_statistics($username, $resolution, $quantity);
 ```
 
 ===
@@ -217,8 +239,8 @@ $photo = $unsplash->photo_random($params);
 
 ===
 
-#### Diza\Unsplash\HttpClient->photo_stats($id)
-Retrieve a single photo’s stats.
+#### Diza\Unsplash\HttpClient->photo_statistics($id, $resolution, $quantity)
+Retrieve total number of downloads, views and likes of a single photo, as well as the historical breakdown of these stats in a specific timeframe.
 
 *Note:* You need to instantiate an httpclient object first
 
@@ -227,12 +249,14 @@ Retrieve a single photo’s stats.
   Argument     | Type | Opt/Required
 ---------------|------|--------------
 `$id`          | string | Required
+`$resolution`  | string  | Opt *(Default: days)* | Accepted values: `days`
+`$quantity`    | int  | Opt *(Default: 30 / Minimum: 1 / Maximum: 30)*
 
 **Example**
 
 ```php
 $unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
-$stats = $unsplash->photo_stats($id);
+$stats = $unsplash->photo_statistics($id, $resolution = 'days', $quantity = 30);
 ```
 
 ===
@@ -257,7 +281,7 @@ $link = $unsplash->photo_download_link($id);
 
 ===
 
-#### Diza\Unsplash\HttpClient->search_photos($query, $page, $per_page)
+#### Diza\Unsplash\HttpClient->search_photos($query, $page, $per_page, $collections)
 Get a single page of photo results for a query.
 
 *Note:* You need to instantiate an httpclient object first
@@ -269,12 +293,13 @@ Get a single page of photo results for a query.
 `$query`       | string | Required | Multiple search terms need to be separated by ` `, `,` or `+`
 `$page`        | int  | Opt *(Default: 1)*
 `$per_page`    | int  | Opt *(Default: 10 / Maximum: 30)*
+`$collections` | string | Opt | Multiple IDs need to be comma-separated
 
 **Example**
 
 ```php
 $unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
-$results = $unsplash->search_photos($query, $page, $per_page);
+$results = $unsplash->search_photos($query, $page, $per_page, $collections);
 ```
 
 ===
