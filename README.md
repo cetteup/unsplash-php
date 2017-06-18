@@ -140,8 +140,8 @@ Retrieve the consolidated number of downloads, views and likes of all user’s p
 
 **Arguments**
 
-  Argument     | Type | Opt/Required
----------------|------|--------------
+  Argument     | Type | Opt/Required | Note
+---------------|------|--------------|------
 `$username`    | string  | Required
 `$resolution`  | string  | Opt *(Default: days)* | Accepted values: `days`
 `$quantity`    | int  | Opt *(Default: 30 / Minimum: 1 / Maximum: 30)*
@@ -246,8 +246,8 @@ Retrieve total number of downloads, views and likes of a single photo, as well a
 
 **Arguments**
 
-  Argument     | Type | Opt/Required
----------------|------|--------------
+Argument     | Type | Opt/Required | Note
+---------------|------|--------------|------
 `$id`          | string | Required
 `$resolution`  | string  | Opt *(Default: days)* | Accepted values: `days`
 `$quantity`    | int  | Opt *(Default: 30 / Minimum: 1 / Maximum: 30)*
@@ -256,7 +256,7 @@ Retrieve total number of downloads, views and likes of a single photo, as well a
 
 ```php
 $unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
-$stats = $unsplash->photo_statistics($id, $resolution = 'days', $quantity = 30);
+$stats = $unsplash->photo_statistics($id, $resolution, $quantity);
 ```
 
 ===
