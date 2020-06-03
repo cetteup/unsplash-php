@@ -261,8 +261,8 @@ $stats = $unsplash->photo_statistics($id, $resolution, $quantity);
 
 ===
 
-#### Cetteup\Unsplash\HttpClient->photo_download_link($id)
-Retrieve a single photo’s download link.
+#### Cetteup\Unsplash\HttpClient->photo_download($id)
+Track a photo download.
 
 *Note:* You need to instantiate an httpclient object first
 
@@ -276,7 +276,7 @@ Retrieve a single photo’s download link.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$link = $unsplash->photo_download_link($id);
+$unsplash->photo_download($id);
 ```
 
 ===

@@ -211,18 +211,17 @@ class HttpClient
     }
 
     /**
-     * Retrieve a single photo’s download link
-     * https://unsplash.com/documentation#get-a-photos-download-link
+     * Track a photo download
+     * https://unsplash.com/documentation#track-a-photo-download
      *
-     * @param  int $id The photo’s ID
-     * @return array Array with url
+     * @param int $id The photo’s ID
+     * @return void
+     * @throws Exception
      */
-    public function photo_download_link($id)
+    public function photo_download($id)
     {
         if (!is_string($id)) return null;
-        $link = $this->send_request('GET','photos/'.$id.'/download');
-
-        return $link;
+        $this->send_request('GET','photos/'.$id.'/download');
     }
 
 
