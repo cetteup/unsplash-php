@@ -8,7 +8,7 @@ An unofficial PHP wrapper to access the [Unsplash API](https://unsplash.com/docu
 `Unsplash-PHP` uses [Composer](https://getcomposer.org/). To use it, require the library
 
 ```
-composer require diza/unsplash
+composer require cetteup/unsplash
 ```
 
 ## Usage
@@ -18,14 +18,14 @@ composer require diza/unsplash
 Before you can start making calls to the API, you need to configure the client with your application ID.
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 ```
 
 ### API methods
 
 Please refer to the [official documentation](https://unsplash.com/documentation) for more detailed information on the response structures.
 
-#### Diza\Unsplash\HttpClient->user_find($username)
+#### Cetteup\Unsplash\HttpClient->user_find($username)
 Retrieve public details on a given user.
 
 *Note:* You need to instantiate an httpclient object first
@@ -39,13 +39,13 @@ Retrieve public details on a given user.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $user = $unsplash->user_find($username);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->user_portfolio_link($username)
+#### Cetteup\Unsplash\HttpClient->user_portfolio_link($username)
 Retrieve a single user’s portfolio link.
 
 *Note:* You need to instantiate an httpclient object first
@@ -59,13 +59,13 @@ Retrieve a single user’s portfolio link.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $link = $unsplash->user_portfolio_link($username);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->user_photos($username, $page, $per_page, $order_by)
+#### Cetteup\Unsplash\HttpClient->user_photos($username, $page, $per_page, $order_by)
 Get a list of photos uploaded by a user.
 
 *Note:* You need to instantiate an httpclient object first
@@ -82,13 +82,13 @@ Get a list of photos uploaded by a user.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $photos = $unsplash->user_photos($username, $page, $per_page, $order_by);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->user_likes($username, $page, $per_page, $order_by)
+#### Cetteup\Unsplash\HttpClient->user_likes($username, $page, $per_page, $order_by)
 Get a list of photos liked by a user.
 
 *Note:* You need to instantiate an httpclient object first
@@ -105,13 +105,13 @@ Get a list of photos liked by a user.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $photos = $unsplash->user_likes($username, $page, $per_page, $order_by);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->user_collections($username, $page, $per_page)
+#### Cetteup\Unsplash\HttpClient->user_collections($username, $page, $per_page)
 Get a list of collections created by a user.
 
 *Note:* You need to instantiate an httpclient object first
@@ -127,13 +127,13 @@ Get a list of collections created by a user.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $collections = $unsplash->user_collections($username, $page, $per_page);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->user_statistics($username, $resolution, $quantity)
+#### Cetteup\Unsplash\HttpClient->user_statistics($username, $resolution, $quantity)
 Retrieve the consolidated number of downloads, views and likes of all user’s photos, as well as the historical breakdown and average of these stats in a specific timeframe.
 
 *Note:* You need to instantiate an httpclient object first
@@ -149,13 +149,13 @@ Retrieve the consolidated number of downloads, views and likes of all user’s p
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $collections = $unsplash->user_statistics($username, $resolution, $quantity);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->photo_all($page, $per_page, $order_by)
+#### Cetteup\Unsplash\HttpClient->photo_all($page, $per_page, $order_by)
 Get a single page from the list of all photos.
 
 *Note:* You need to instantiate an httpclient object first
@@ -171,13 +171,13 @@ Get a single page from the list of all photos.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $photos = $unsplash->photo_all($page, $per_page, $order_by);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->photo_curated($page, $per_page, $order_by)
+#### Cetteup\Unsplash\HttpClient->photo_curated($page, $per_page, $order_by)
 Get a single page from the list of the curated photos.
 
 *Note:* You need to instantiate an httpclient object first
@@ -193,13 +193,13 @@ Get a single page from the list of the curated photos.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $photos = $unsplash->photo_curated($page, $per_page, $order_by);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->photo_find($id)
+#### Cetteup\Unsplash\HttpClient->photo_find($id)
 Retrieve a single photo.
 
 *Note:* You need to instantiate an httpclient object first
@@ -213,13 +213,13 @@ Retrieve a single photo.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $photo = $unsplash->photo_find($id);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->photo_random($params)
+#### Cetteup\Unsplash\HttpClient->photo_random($params)
 Retrieve a single random photo, given [optional filters](https://unsplash.com/documentation#get-a-random-photo).
 
 *Note:* You need to instantiate an httpclient object first
@@ -233,13 +233,13 @@ Retrieve a single random photo, given [optional filters](https://unsplash.com/do
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $photo = $unsplash->photo_random($params);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->photo_statistics($id, $resolution, $quantity)
+#### Cetteup\Unsplash\HttpClient->photo_statistics($id, $resolution, $quantity)
 Retrieve total number of downloads, views and likes of a single photo, as well as the historical breakdown of these stats in a specific timeframe.
 
 *Note:* You need to instantiate an httpclient object first
@@ -255,13 +255,13 @@ Argument     | Type | Opt/Required | Note
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $stats = $unsplash->photo_statistics($id, $resolution, $quantity);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->photo_download_link($id)
+#### Cetteup\Unsplash\HttpClient->photo_download_link($id)
 Retrieve a single photo’s download link.
 
 *Note:* You need to instantiate an httpclient object first
@@ -275,13 +275,13 @@ Retrieve a single photo’s download link.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $link = $unsplash->photo_download_link($id);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->search_photos($query, $page, $per_page, $collections)
+#### Cetteup\Unsplash\HttpClient->search_photos($query, $page, $per_page, $collections)
 Get a single page of photo results for a query.
 
 *Note:* You need to instantiate an httpclient object first
@@ -298,13 +298,13 @@ Get a single page of photo results for a query.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $results = $unsplash->search_photos($query, $page, $per_page, $collections);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->search_collections($query, $page, $per_page)
+#### Cetteup\Unsplash\HttpClient->search_collections($query, $page, $per_page)
 Get a single page of collection results for a query.
 
 *Note:* You need to instantiate an httpclient object first
@@ -320,13 +320,13 @@ Get a single page of collection results for a query.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $results = $unsplash->search_collections($query, $page, $per_page);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->search_users($query, $page, $per_page)
+#### Cetteup\Unsplash\HttpClient->search_users($query, $page, $per_page)
 Get a single page of user results for a query.
 
 *Note:* You need to instantiate an httpclient object first
@@ -342,13 +342,13 @@ Get a single page of user results for a query.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $results = $unsplash->search_users($query, $page, $per_page);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->collection_all($page, $per_page)
+#### Cetteup\Unsplash\HttpClient->collection_all($page, $per_page)
 Get a single page from the list of all collections.
 
 *Note:* You need to instantiate an httpclient object first
@@ -363,13 +363,13 @@ Get a single page from the list of all collections.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $collections = $unsplash->collection_all($page, $per_page);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->collection_featured($page, $per_page)
+#### Cetteup\Unsplash\HttpClient->collection_featured($page, $per_page)
 Get a single page from the list of featured collections.
 
 *Note:* You need to instantiate an httpclient object first
@@ -384,13 +384,13 @@ Get a single page from the list of featured collections.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $collections = $unsplash->collection_featured($page, $per_page);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->collection_curated($page, $per_page)
+#### Cetteup\Unsplash\HttpClient->collection_curated($page, $per_page)
 Get a single page from the list of curated collections.
 
 *Note:* You need to instantiate an httpclient object first
@@ -405,13 +405,13 @@ Get a single page from the list of curated collections.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $collections = $unsplash->collection_curated($page, $per_page);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->collection_find($id, $curated)
+#### Cetteup\Unsplash\HttpClient->collection_find($id, $curated)
 Retrieve a single collection.
 
 *Note:* You need to instantiate an httpclient object first
@@ -426,13 +426,13 @@ Retrieve a single collection.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $collection = $unsplash->collection_find($id, $curated);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->collection_photos($id, $page, $per_page, $curated)
+#### Cetteup\Unsplash\HttpClient->collection_photos($id, $page, $per_page, $curated)
 Retrieve a collection’s photos.
 
 *Note:* You need to instantiate an httpclient object first
@@ -449,13 +449,13 @@ Retrieve a collection’s photos.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $photos = $unsplash->collection_photos($id, $page, $per_page, $curated);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->collection_related($id)
+#### Cetteup\Unsplash\HttpClient->collection_related($id)
 Retrieve a list of related collections.
 
 *Note:* You need to instantiate an httpclient object first
@@ -469,13 +469,13 @@ Retrieve a list of related collections.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $collections = $unsplash->collection_related($id);
 ```
 
 ===
 
-#### Diza\Unsplash\HttpClient->stats()
+#### Cetteup\Unsplash\HttpClient->stats()
 Get a list of stats for all of Unsplash.
 
 *Note:* You need to instantiate an httpclient object first
@@ -483,6 +483,6 @@ Get a list of stats for all of Unsplash.
 **Example**
 
 ```php
-$unsplash = new Diza\Unsplash\HttpClient('YOUR APPLICATION ID');
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
 $stats = $unsplash->stats();
 ```

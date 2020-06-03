@@ -1,5 +1,5 @@
 <?php
-namespace Diza\Unsplash;
+namespace Cetteup\Unsplash;
 
 class ResponseArray extends \ArrayObject
 {
@@ -71,4 +71,3 @@ class ResponseArray extends \ArrayObject
         return $perPage;
     }
 }
-?>

@@ -1,5 +1,5 @@
 <?php
-namespace Diza\Unsplash;
+namespace Cetteup\Unsplash;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
@@ -449,4 +449,3 @@ class HttpClient
         return $errors;
     }
 }
-?>

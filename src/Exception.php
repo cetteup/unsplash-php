@@ -1,5 +1,4 @@
 <?php
-namespace Diza\Unsplash;
+namespace Cetteup\Unsplash;
 
 class Exception extends \Exception {}
-?>
