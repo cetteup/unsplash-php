@@ -13,8 +13,7 @@ class ResponseArray extends \ArrayObject
     const LINK = 'Link';
     const TOTAL = 'X-Total';
     const PER_PAGE = 'X-Per-Page';
-    const X_Ratelimit_Limit = 'X-Ratelimit-Limit';
-    const X_Ratelimit_Remaining = 'X-Ratelimit-Remaining';
+    const RATE_LIMIT_REMAINING = 'X-Ratelimit-Remaining';
 
     /**
      * @param array $headers
@@ -70,4 +69,15 @@ class ResponseArray extends \ArrayObject
 
         return $perPage;
     }
+
+    /**
+     * Return the rate limit remaining
+     * Source: https://github.com/unsplash/unsplash-php
+     * @return int
+     */
+    public function rateLimitRemaining()
+    {
+        return intval($this->headers[self::RATE_LIMIT_REMAINING][0]);
+    }
+
 }
