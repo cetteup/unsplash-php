@@ -147,23 +147,6 @@ class HttpClient
     }
 
     /**
-     * Get a single page from the list of the curated photos
-     * https://unsplash.com/documentation#list-curated-photos
-     *
-     * @param  int    $page Page number to retrieve
-     * @param  int    $per_page Number of items per page
-     * @param  string $order_by How to sort the photos
-     * @return array Array of photos
-     */
-    public function photo_curated($page = 1, $per_page = 10, $order_by = 'latest')
-    {
-        if (!is_int($page) || !is_int($per_page) || !is_string($order_by)) return null;
-        $photos = $this->send_request('GET','photos/curated',['page' => $page, 'per_page' => $per_page, 'order_by' => $order_by]);
-
-        return $photos;
-    }
-
-    /**
      * Retrieve a single photo
      * https://unsplash.com/documentation#get-a-photo
      *
@@ -315,61 +298,31 @@ class HttpClient
     }
 
     /**
-     * Get a single page from the list of curated collections
-     * https://unsplash.com/documentation#list-curated-collections
-     *
-     * @param  int  $page Page number to retrieve
-     * @param  int  $per_page Number of items per page
-     * @return array Array of collections
-     */
-    public function collection_curated($page = 1, $per_page = 10)
-    {
-        if (!is_int($page) || !is_int($per_page)) return null;
-        $collections = $this->send_request('GET','collections/curated',['page' => $page, 'per_page' => $per_page]);
-
-        return $collections;
-    }
-
-    /**
      * Retrieve a single collection
      * https://unsplash.com/documentation#get-a-collection
      *
-     * @param  int  $id Id of the collection
-     * @param  bool $curated When TRUE, retrieves a curated collection
-     * @return array Array with collection details
+     * @param int $id Id of the collection
+     * @return ResponseArray Array with collection details
+     * @throws Exception
      */
-    public function collection_find($id, $curated = false)
+    public function collection_find($id)
     {
-        if (!is_int($id)) return null;
-        if (!$curated) {
-            $collection = $this->send_request('GET','collections/'.$id);
-        } else {
-            $collection = $this->send_request('GET','collections/curated/'.$id);
-        }
-
-        return $collection;
+        return $this->send_request('GET', "collections/{$id}");
     }
 
     /**
-     * Retrieve a (curated) collection’s photos
+     * Retrieve a collection’s photos
      * https://unsplash.com/documentation#get-a-collections-photos
      *
-     * @param  int  $id Id of the collection
-     * @param  int  $page Page number to retrieve
-     * @param  int  $per_page Number of items per page
-     * @param  bool $curated When TRUE, retrieves photos of curated collection
-     * @return array Array of photos
+     * @param int $id Id of the collection
+     * @param int $page Page number to retrieve
+     * @param int $per_page Number of items per page
+     * @return ResponseArray Array of photos
+     * @throws Exception
      */
-    public function collection_photos($id, $page = 1, $per_page = 10, $curated = false)
+    public function collection_photos($id, $page = 1, $per_page = 10)
     {
-        if (!is_int($id) || !is_int($page) || !is_int($per_page) || !is_bool($curated)) return null;
-        if (!$curated) {
-            $photos = $this->send_request('GET','collections/'.$id.'/photos',['page' => $page, 'per_page' => $per_page]);
-        } else {
-            $photos = $this->send_request('GET','collections/curated/'.$id.'/photos',['page' => $page, 'per_page' => $per_page]);
-        }
-
-        return $photos;
+        return $this->send_request('GET',"collections/{$id}/photos", ['page' => $page, 'per_page' => $per_page]);
     }
 
     /**
