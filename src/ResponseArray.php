@@ -1,8 +1,16 @@
 <?php
+
 namespace Cetteup\Unsplash;
 
+/**
+ * Class ResponseArray
+ * @package Cetteup\Unsplash
+ */
 class ResponseArray extends \ArrayObject
 {
+    /**
+     * @var array
+     */
     private $headers;
 
     const LAST = 'last';
@@ -36,7 +44,7 @@ class ResponseArray extends \ArrayObject
         $total = $this->totalObjects();
         $perPage = $this->objectsPerPage();
 
-        return (int) ceil($total / $perPage);
+        return (int)ceil($total / $perPage);
     }
 
     /**
@@ -49,14 +57,14 @@ class ResponseArray extends \ArrayObject
     {
         $total = 0;
         if (!empty($this->headers[self::TOTAL]) && is_array($this->headers[self::TOTAL])) {
-            $total = (int) $this->headers[self::TOTAL][0];
+            $total = (int)$this->headers[self::TOTAL][0];
         }
 
         return $total;
     }
 
     /**
-     * Number of element per page
+     * Number of elements per page
      * Source: https://github.com/unsplash/unsplash-php
      * @return int element per page
      */
@@ -64,7 +72,7 @@ class ResponseArray extends \ArrayObject
     {
         $perPage = 10;
         if (!empty($this->headers[self::PER_PAGE]) && is_array($this->headers[self::PER_PAGE])) {
-            $perPage = (int) $this->headers[self::PER_PAGE][0];
+            $perPage = (int)$this->headers[self::PER_PAGE][0];
         }
 
         return $perPage;

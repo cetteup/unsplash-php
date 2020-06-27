@@ -1,4 +1,7 @@
 <?php
+
 namespace Cetteup\Unsplash;
 
-class Exception extends \Exception {}
+class Exception extends \Exception
+{
+}

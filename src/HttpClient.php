@@ -1,4 +1,5 @@
 <?php
+
 namespace Cetteup\Unsplash;
 
 use GuzzleHttp\Client;
@@ -86,13 +87,13 @@ class HttpClient
             'order_by' => $order_by
         ];
 
-        if ( $stats ) {
+        if ($stats) {
             $query['stats'] = $stats;
             $query['resolution'] = $resolution;
             $query['quantity'] = $quantity;
         }
 
-        if ( ! empty($orientation) ) {
+        if (!empty($orientation)) {
             $query['orientation'] = $orientation;
         }
 
@@ -119,7 +120,7 @@ class HttpClient
             'order_by' => $order_by
         ];
 
-        if ( ! empty($orientation) ) {
+        if (!empty($orientation)) {
             $query['orientation'] = $orientation;
         }
 
@@ -168,7 +169,7 @@ class HttpClient
      */
     public function photo_all($page = 1, $per_page = 10, $order_by = 'latest')
     {
-        return $this->send_request('GET',"photos", ['page' => $page, 'per_page' => $per_page, 'order_by' => $order_by]);
+        return $this->send_request('GET', "photos", ['page' => $page, 'per_page' => $per_page, 'order_by' => $order_by]);
     }
 
     /**
@@ -181,7 +182,7 @@ class HttpClient
      */
     public function photo_find($id)
     {
-        return $this->send_request('GET',  "photos/{$id}");
+        return $this->send_request('GET', "photos/{$id}");
     }
 
     /**
@@ -194,7 +195,7 @@ class HttpClient
      */
     public function photo_random($params = [])
     {
-        return $this->send_request('GET',"photos/random", $params);
+        return $this->send_request('GET', "photos/random", $params);
     }
 
     /**
@@ -222,7 +223,7 @@ class HttpClient
      */
     public function photo_download($id)
     {
-        $this->send_request('GET',"photos/{$id}/download");
+        $this->send_request('GET', "photos/{$id}/download");
     }
 
     /**
@@ -250,15 +251,15 @@ class HttpClient
             'content_filter' => $content_filter
         ];
 
-        if ( ! empty($collections)) {
+        if (!empty($collections)) {
             $query['collections'] = $collections;
         }
 
-        if ( ! empty($color) ) {
+        if (!empty($color)) {
             $query['color'] = $color;
         }
 
-        if ( ! empty($orientation)) {
+        if (!empty($orientation)) {
             $query['orientation'] = $orientation;
         }
 
@@ -321,7 +322,7 @@ class HttpClient
      */
     public function collection_featured($page = 1, $per_page = 10)
     {
-        return $this->send_request('GET',"collections/featured", ['page' => $page, 'per_page' => $per_page]);
+        return $this->send_request('GET', "collections/featured", ['page' => $page, 'per_page' => $per_page]);
     }
 
     /**
@@ -355,11 +356,11 @@ class HttpClient
             'per_page' => $per_page,
         ];
 
-        if ( ! empty($orientation)) {
+        if (!empty($orientation)) {
             $query['orientation'] = $orientation;
         }
 
-        return $this->send_request('GET',"collections/{$id}/photos", $query);
+        return $this->send_request('GET', "collections/{$id}/photos", $query);
     }
 
     /**
@@ -372,7 +373,7 @@ class HttpClient
      */
     public function collection_related($id)
     {
-        return $this->send_request('GET',"collections/{$id}/related");
+        return $this->send_request('GET', "collections/{$id}/related");
     }
 
     /**
@@ -425,8 +426,8 @@ class HttpClient
         try {
             $request = new Request($method, $endpoint);
             $response = $this->client->send($request, [
-              'headers' => ["Authorization" => "Client-ID {$this->app_id}"],
-              'query' => $params
+                'headers' => ["Authorization" => "Client-ID {$this->app_id}"],
+                'query' => $params
             ]);
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
@@ -439,7 +440,7 @@ class HttpClient
 
         return new ResponseArray(
             $response->getHeaders(),
-            json_decode($response->getBody(),true)
+            json_decode($response->getBody(), true)
         );
     }
 
@@ -447,7 +448,7 @@ class HttpClient
      * Retrieve the error messages in the body
      * Source: https://github.com/unsplash/unsplash-php
      *
-     * @param  \GuzzleHttp\Psr7\Response $response of the HTTP request
+     * @param \GuzzleHttp\Psr7\Response $response of the HTTP request
      * @return array Array of error messages
      */
     private function get_error_message($response)
