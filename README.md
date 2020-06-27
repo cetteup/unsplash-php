@@ -40,10 +40,10 @@ Retrieve public details on a given user.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$user = $unsplash->user_find($username);
+$user = $unsplash->user_find('cetteup');
 ```
 
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->user_portfolio_link($username)
 Retrieve a single user’s portfolio link.
@@ -60,12 +60,12 @@ Retrieve a single user’s portfolio link.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$link = $unsplash->user_portfolio_link($username);
+$link = $unsplash->user_portfolio_link('cetteup');
 ```
 
-===
+----
 
-#### Cetteup\Unsplash\HttpClient->user_photos($username, $page, $per_page, $order_by)
+#### Cetteup\Unsplash\HttpClient->user_photos($username, $page, $per_page, $order_by, $stats, $resolution, $quantity, $orientation)
 Get a list of photos uploaded by a user.
 
 *Note:* You need to instantiate an httpclient object first
@@ -78,17 +78,21 @@ Get a list of photos uploaded by a user.
 `$page`        | int  | Opt *(Default: 1)*
 `$per_page`    | int  | Opt *(Default: 10 / Maximum: 30)*
 `$order_by`    | string | Opt *(Default: latest)* | Accepted values: `latest`, `oldest`, `popular`
+`$stats`       | bool | Opt *(Default: false)*
+`$resolution`  | string | Opt *(Default: days)* | Accepted values: `days`
+`$quantity`    | int | Opt *(Default: 30)*
+`$orientation` | string | Opt | Accepted values: `landscape`, `portrait`, `squarish`
 
 **Example**
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$photos = $unsplash->user_photos($username, $page, $per_page, $order_by);
+$photos = $unsplash->user_photos('cetteup', 2, 30, 'oldest');
 ```
 
-===
+----
 
-#### Cetteup\Unsplash\HttpClient->user_likes($username, $page, $per_page, $order_by)
+#### Cetteup\Unsplash\HttpClient->user_likes($username, $page, $per_page, $order_by, $orientation)
 Get a list of photos liked by a user.
 
 *Note:* You need to instantiate an httpclient object first
@@ -101,15 +105,16 @@ Get a list of photos liked by a user.
 `$page`        | int  | Opt *(Default: 1)*
 `$per_page`    | int  | Opt *(Default: 10 / Maximum: 30)*
 `$order_by`    | string | Opt *(Default: latest)* | Accepted values: `latest`, `oldest`, `popular`
+`$orientation` | string | Opt | Accepted values: `landscape`, `portrait`, `squarish`
 
 **Example**
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$photos = $unsplash->user_likes($username, $page, $per_page, $order_by);
+$photos = $unsplash->user_likes('cetteup', 2, 20, 'popular');
 ```
 
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->user_collections($username, $page, $per_page)
 Get a list of collections created by a user.
@@ -128,10 +133,10 @@ Get a list of collections created by a user.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$collections = $unsplash->user_collections($username, $page, $per_page);
+$collections = $unsplash->user_collections('jlantunez', 3, 5);
 ```
 
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->user_statistics($username, $resolution, $quantity)
 Retrieve the consolidated number of downloads, views and likes of all user’s photos, as well as the historical breakdown and average of these stats in a specific timeframe.
@@ -150,10 +155,10 @@ Retrieve the consolidated number of downloads, views and likes of all user’s p
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$collections = $unsplash->user_statistics($username, $resolution, $quantity);
+$collections = $unsplash->user_statistics('cetteup', 'days', 10);
 ```
 
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->photo_all($page, $per_page, $order_by)
 Get a single page from the list of all photos.
@@ -172,32 +177,10 @@ Get a single page from the list of all photos.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$photos = $unsplash->photo_all($page, $per_page, $order_by);
+$photos = $unsplash->photo_all(2, 30, 'oldest');
 ```
 
-===
-
-#### Cetteup\Unsplash\HttpClient->photo_curated($page, $per_page, $order_by)
-Get a single page from the list of the curated photos.
-
-*Note:* You need to instantiate an httpclient object first
-
-**Arguments**
-
-  Argument     | Type | Opt/Required | Note
----------------|------|--------------|------
-`$page`        | int  | Opt *(Default: 1)*
-`$per_page`    | int  | Opt *(Default: 10 / Maximum: 30)*
-`$order_by`    | string | Opt *(Default: latest)* | Accepted values: `latest`, `oldest`, `popular`
-
-**Example**
-
-```php
-$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$photos = $unsplash->photo_curated($page, $per_page, $order_by);
-```
-
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->photo_find($id)
 Retrieve a single photo.
@@ -214,10 +197,10 @@ Retrieve a single photo.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$photo = $unsplash->photo_find($id);
+$photo = $unsplash->photo_find('54t5rivyAiI');
 ```
 
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->photo_random($params)
 Retrieve a single random photo, given [optional filters](https://unsplash.com/documentation#get-a-random-photo).
@@ -234,10 +217,10 @@ Retrieve a single random photo, given [optional filters](https://unsplash.com/do
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$photo = $unsplash->photo_random($params);
+$photo = $unsplash->photo_random(['orientation' => 'portrait']);
 ```
 
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->photo_statistics($id, $resolution, $quantity)
 Retrieve total number of downloads, views and likes of a single photo, as well as the historical breakdown of these stats in a specific timeframe.
@@ -256,10 +239,10 @@ Argument     | Type | Opt/Required | Note
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$stats = $unsplash->photo_statistics($id, $resolution, $quantity);
+$stats = $unsplash->photo_statistics('54t5rivyAiI', 'days', 14);
 ```
 
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->photo_download($id)
 Track a photo download.
@@ -276,12 +259,12 @@ Track a photo download.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$unsplash->photo_download($id);
+$unsplash->photo_download('54t5rivyAiI');
 ```
 
-===
+----
 
-#### Cetteup\Unsplash\HttpClient->search_photos($query, $page, $per_page, $collections)
+#### Cetteup\Unsplash\HttpClient->search_photos($search, $page, $per_page, $order_by, $content_filter, $collections, $color, $orientation)
 Get a single page of photo results for a query.
 
 *Note:* You need to instantiate an httpclient object first
@@ -290,21 +273,25 @@ Get a single page of photo results for a query.
 
   Argument     | Type | Opt/Required | Note
 ---------------|------|--------------|------
-`$query`       | string | Required | Multiple search terms need to be separated by ` `, `,` or `+`
+`$search`      | string | Required | Multiple search terms need to be separated by ` `, `,` or `+`
 `$page`        | int  | Opt *(Default: 1)*
 `$per_page`    | int  | Opt *(Default: 10 / Maximum: 30)*
+`$order_by`    | string | Opt *(Default: relevant)* | Accepted values: `latest`, `relevant`
+`$content_filter` | string | Opt *(Default: low)* | Accepted values: `low`, `high`
 `$collections` | string | Opt | Multiple IDs need to be comma-separated
+`$color`       | string | Opt | Accepted values: `black_and_white`, `black`, `white`, `yellow`, `orange`, `red`, `purple`, `magenta`, `green`, `teal`, `and` `blueblack_and_white`, `black`, `white`, `yellow`, `orange`, `red`, `purple`, `magenta`, `green`, `teal`, `blue`
+`$orientation` | string | Opt | Accepted values: `landscape`, `portrait`, `squarish`
 
 **Example**
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$results = $unsplash->search_photos($query, $page, $per_page, $collections);
+$results = $unsplash->search_photos('cats', 5, 30);
 ```
 
-===
+----
 
-#### Cetteup\Unsplash\HttpClient->search_collections($query, $page, $per_page)
+#### Cetteup\Unsplash\HttpClient->search_collections($search, $page, $per_page)
 Get a single page of collection results for a query.
 
 *Note:* You need to instantiate an httpclient object first
@@ -313,7 +300,7 @@ Get a single page of collection results for a query.
 
   Argument     | Type | Opt/Required | Note
 ---------------|------|--------------|------
-`$query`       | string | Required | Multiple search terms need to be separated by ` `, `,` or `+`
+`$search`      | string | Required | Multiple search terms need to be separated by ` `, `,` or `+`
 `$page`        | int  | Opt *(Default: 1)*
 `$per_page`    | int  | Opt *(Default: 10 / Maximum: 30)*
 
@@ -321,12 +308,12 @@ Get a single page of collection results for a query.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$results = $unsplash->search_collections($query, $page, $per_page);
+$results = $unsplash->search_collections('dogs', 10, 25);
 ```
 
-===
+----
 
-#### Cetteup\Unsplash\HttpClient->search_users($query, $page, $per_page)
+#### Cetteup\Unsplash\HttpClient->search_users($search, $page, $per_page)
 Get a single page of user results for a query.
 
 *Note:* You need to instantiate an httpclient object first
@@ -335,7 +322,7 @@ Get a single page of user results for a query.
 
   Argument     | Type | Opt/Required | Note
 ---------------|------|--------------|------
-`$query`       | string | Required | Multiple search terms need to be separated by ` `, `,` or `+`
+`$search`      | string | Required | Multiple search terms need to be separated by ` `, `,` or `+`
 `$page`        | int  | Opt *(Default: 1)*
 `$per_page`    | int  | Opt *(Default: 10 / Maximum: 30)*
 
@@ -343,10 +330,10 @@ Get a single page of user results for a query.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$results = $unsplash->search_users($query, $page, $per_page);
+$results = $unsplash->search_users('photography', 1, 15);
 ```
 
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->collection_all($page, $per_page)
 Get a single page from the list of all collections.
@@ -364,10 +351,10 @@ Get a single page from the list of all collections.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$collections = $unsplash->collection_all($page, $per_page);
+$collections = $unsplash->collection_all(10, 30);
 ```
 
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->collection_featured($page, $per_page)
 Get a single page from the list of featured collections.
@@ -385,33 +372,12 @@ Get a single page from the list of featured collections.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$collections = $unsplash->collection_featured($page, $per_page);
+$collections = $unsplash->collection_featured(2, 10);
 ```
 
-===
+----
 
-#### Cetteup\Unsplash\HttpClient->collection_curated($page, $per_page)
-Get a single page from the list of curated collections.
-
-*Note:* You need to instantiate an httpclient object first
-
-**Arguments**
-
-  Argument     | Type | Opt/Required
----------------|------|--------------
-`$page`        | int  | Opt *(Default: 1)*
-`$per_page`    | int  | Opt *(Default: 10 / Maximum: 30)*
-
-**Example**
-
-```php
-$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$collections = $unsplash->collection_curated($page, $per_page);
-```
-
-===
-
-#### Cetteup\Unsplash\HttpClient->collection_find($id, $curated)
+#### Cetteup\Unsplash\HttpClient->collection_find($id)
 Retrieve a single collection.
 
 *Note:* You need to instantiate an httpclient object first
@@ -421,18 +387,17 @@ Retrieve a single collection.
   Argument     | Type | Opt/Required | Note
 ---------------|------|--------------|------
 `$id`          | int | Required
-`$curated`     | bool  | Opt *(Default: false)* | When `TRUE`, retrieves a curated collection
 
 **Example**
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$collection = $unsplash->collection_find($id, $curated);
+$collection = $unsplash->collection_find(1121542);
 ```
 
-===
+----
 
-#### Cetteup\Unsplash\HttpClient->collection_photos($id, $page, $per_page, $curated)
+#### Cetteup\Unsplash\HttpClient->collection_photos($id, $page, $per_page, $orientation)
 Retrieve a collection’s photos.
 
 *Note:* You need to instantiate an httpclient object first
@@ -444,16 +409,16 @@ Retrieve a collection’s photos.
 `$id`          | int | Required
 `$page`        | int  | Opt *(Default: 1)*
 `$per_page`    | int  | Opt *(Default: 10 / Maximum: 30)*
-`$curated`     | bool  | Opt *(Default: false)* | When `TRUE`, retrieves photos of curated collection
+`$orientation` | string | Opt | Accepted values: `landscape`, `portrait`, `squarish`
 
 **Example**
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$photos = $unsplash->collection_photos($id, $page, $per_page, $curated);
+$photos = $unsplash->collection_photos(1121542, 1, 10, 'squarish');
 ```
 
-===
+----
 
 #### Cetteup\Unsplash\HttpClient->collection_related($id)
 Retrieve a list of related collections.
@@ -470,12 +435,12 @@ Retrieve a list of related collections.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$collections = $unsplash->collection_related($id);
+$collections = $unsplash->collection_related(1121542);
 ```
 
-===
+----
 
-#### Cetteup\Unsplash\HttpClient->stats()
+#### Cetteup\Unsplash\HttpClient->stats_total()
 Get a list of stats for all of Unsplash.
 
 *Note:* You need to instantiate an httpclient object first
@@ -484,5 +449,19 @@ Get a list of stats for all of Unsplash.
 
 ```php
 $unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
-$stats = $unsplash->stats();
+$stats = $unsplash->stats_total();
+```
+
+----
+
+#### Cetteup\Unsplash\HttpClient->stats_month()
+Get the overall Unsplash stats for the past 30 days.
+
+*Note:* You need to instantiate an httpclient object first
+
+**Example**
+
+```php
+$unsplash = new Cetteup\Unsplash\HttpClient('YOUR APPLICATION ID');
+$stats = $unsplash->stats_month();
 ```
