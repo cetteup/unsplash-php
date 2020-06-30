@@ -22,6 +22,7 @@ class HttpClient
     private $app_id;
 
     const API_ROOT = 'https://api.unsplash.com';
+    const API_VERSION = 'v1';
 
     /**
      * @param string $app_id Your application ID
@@ -426,7 +427,10 @@ class HttpClient
         try {
             $request = new Request($method, $endpoint);
             $response = $this->client->send($request, [
-                'headers' => ["Authorization" => "Client-ID {$this->app_id}"],
+                'headers' => [
+                    "Authorization" => "Client-ID {$this->app_id}",
+                    "Accept-Version" => self::API_VERSION
+                ],
                 'query' => $params
             ]);
         } catch (RequestException $e) {
